@@ -1,169 +1,177 @@
-# Assignment 2 - ASP.NET Core Web API
+ProductCatalogAPI
 
-A RESTful Web API built with ASP.NET Core 8.0, demonstrating clean architecture with Models, Controllers, Interfaces, and Services. This project implements a simple e-commerce API for managing Products and Categories.
+A RESTful Web API built with ASP.NET Core 8.0, demonstrating clean architecture using Models, Controllers, Interfaces, and Services.
 
-## 🚀 Features
+This project implements a simple e-commerce Product Catalog API for managing Products and Categories using in-memory storage.
 
-- **2 Models**: Product and Category
-- **2 Controllers**: Each with 3 RESTful endpoints (GET all, GET by id, POST create)
-- **Dependency Injection**: Using interfaces and services
-- **Swagger Documentation**: Interactive API testing with Swagger UI
-- **CORS Enabled**: Ready for frontend integration
-- **In-Memory Storage**: Simple data persistence during runtime
+Features
 
-## 📁 Project Structure
+2 Models: Product and Category
 
-```
-Assignment2App/
-├── Controllers/          # API Controllers
-│   ├── ProductsController.cs    (3 endpoints)
-│   └── CategoriesController.cs  (3 endpoints)
-├── Models/              # Data Models
+2 Controllers with 3 RESTful endpoints each (GET all, GET by id, POST create)
+
+Dependency Injection using interfaces and services
+
+Swagger documentation for interactive API testing
+
+CORS enabled for frontend integration
+
+In-memory storage for runtime data persistence
+
+Clean and structured architecture
+
+Project Structure
+ProductCatalogAPI/
+├── Controllers/
+│   ├── ProductsController.cs
+│   └── CategoriesController.cs
+├── Models/
 │   ├── Product.cs
 │   └── Category.cs
-├── Interfaces/          # Service Interfaces
+├── Interfaces/
 │   ├── IProductService.cs
 │   └── ICategoryService.cs
-├── Services/            # Service Implementations
+├── Services/
 │   ├── ProductService.cs
 │   └── CategoryService.cs
-├── Program.cs           # Application entry point & configuration
+├── Program.cs
 ├── Properties/
 │   └── launchSettings.json
 ├── appsettings.json
 └── README.md
-```
+Models
+Product
 
-## 📋 Models
+Id (int) – Auto-generated unique identifier
 
-### Product
-- `Id` (int) - Auto-generated unique identifier
-- `Name` (string) - Product name
-- `Price` (decimal) - Product price
-- `CategoryId` (int) - Foreign key to Category
+Name (string) – Product name
 
-### Category
-- `Id` (int) - Auto-generated unique identifier
-- `Name` (string) - Category name
-- `Description` (string?) - Optional category description
+Price (decimal) – Product price
 
-## 🔌 API Endpoints
+CategoryId (int) – Foreign key reference to Category
 
-### ProductsController (`/api/products`)
+Category
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/products` | Get all products |
-| GET | `/api/products/{id}` | Get product by id |
-| POST | `/api/products` | Create new product |
+Id (int) – Auto-generated unique identifier
 
-**Example POST Request:**
-```json
+Name (string) – Category name
+
+Description (string?) – Optional category description
+
+API Endpoints
+ProductsController (/api/products)
+Method	Endpoint	Description
+GET	/api/products	Retrieve all products
+GET	/api/products/{id}	Retrieve product by ID
+POST	/api/products	Create a new product
+
+Example POST Request:
+
 {
   "name": "Laptop",
   "price": 999.99,
   "categoryId": 1
 }
-```
+CategoriesController (/api/categories)
+Method	Endpoint	Description
+GET	/api/categories	Retrieve all categories
+GET	/api/categories/{id}	Retrieve category by ID
+POST	/api/categories	Create a new category
 
-### CategoriesController (`/api/categories`)
+Example POST Request:
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/categories` | Get all categories |
-| GET | `/api/categories/{id}` | Get category by id |
-| POST | `/api/categories` | Create new category |
-
-**Example POST Request:**
-```json
 {
   "name": "Electronics",
   "description": "Electronic devices and gadgets"
 }
-```
+Prerequisites
 
-## 🛠️ Prerequisites
+.NET 8.0 SDK or later
 
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later
-- Git (for cloning)
+Git
 
-## 🏃 Running the Project
+Running the Project
 
-1. **Clone the repository**
-   ```bash
-   git clone <your-repo-url>
-   cd Assignment-2
-   ```
+Clone the repository:
 
-2. **Restore dependencies**
-   ```bash
-   dotnet restore
-   ```
+git clone <your-repo-url>
+cd ProductCatalogAPI
 
-3. **Run the application**
-   ```bash
-   dotnet run
-   ```
+Restore dependencies:
 
-4. **Open Swagger UI**
-   - Navigate to: `http://localhost:5000/swagger`
-   - Or: `https://localhost:5001/swagger`
+dotnet restore
 
-## 🧪 Testing with Swagger
+Run the application:
 
-Swagger UI provides an interactive interface to test all endpoints:
+dotnet run
 
-1. Open `http://localhost:5000/swagger` in your browser
-2. Expand any endpoint section (Products or Categories)
-3. Click **"Try it out"**
-4. Fill in the request body (for POST requests)
-5. Click **"Execute"**
-6. View the response below
+Open Swagger UI:
 
-## 📝 Example API Calls
+http://localhost:5000/swagger
 
-### Create a Category
-```bash
+https://localhost:5001/swagger
+
+Testing with Swagger
+
+Open /swagger in your browser.
+
+Expand Products or Categories.
+
+Click "Try it out".
+
+Enter the request body for POST requests.
+
+Click "Execute".
+
+Review the response.
+
+Example API Calls
+
+Create a Category:
+
 curl -X POST "http://localhost:5000/api/categories" \
   -H "Content-Type: application/json" \
   -d '{"name":"Electronics","description":"Electronic devices"}'
-```
 
-### Get All Categories
-```bash
+Get All Categories:
+
 curl "http://localhost:5000/api/categories"
-```
 
-### Create a Product
-```bash
+Create a Product:
+
 curl -X POST "http://localhost:5000/api/products" \
   -H "Content-Type: application/json" \
   -d '{"name":"Laptop","price":999.99,"categoryId":1}'
-```
+Architecture Overview
 
-## 🏗️ Architecture
+Models: Data entities
 
-- **Models**: Data entities (Product, Category)
-- **Interfaces**: Service contracts (IProductService, ICategoryService)
-- **Services**: Business logic implementation (ProductService, CategoryService)
-- **Controllers**: API endpoints handling HTTP requests/responses
-- **Dependency Injection**: Services registered in `Program.cs`
+Interfaces: Service contracts
 
-## 📦 Technologies Used
+Services: Business logic implementation
 
-- ASP.NET Core 8.0
-- Swashbuckle.AspNetCore (Swagger)
-- C# 12
-- RESTful API Design
+Controllers: HTTP request handling
 
-## 📄 License
+Dependency Injection: Registered in Program.cs
 
-This project is created for educational purposes as part of Assignment 2.
+This structure ensures clean separation of concerns and scalability.
 
-## 👤 Author
+Technologies Used
 
-Created as part of Web Development Assignment 2.
+ASP.NET Core 8.0
 
----
+Swashbuckle.AspNetCore (Swagger)
 
-**Note**: Data is stored in-memory and will be lost when the application stops. For persistent storage, consider adding Entity Framework Core with a database.
+C# 12
+
+RESTful API Design
+
+Author
+
+Youssef Azmy
+
+Note
+
+Data is stored in-memory and will be lost when the application stops.
+
+For persistent storage, consider integrating Entity Framework Core with a relational database such as SQL Server or PostgreSQL.
